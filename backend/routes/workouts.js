@@ -7,7 +7,9 @@ const {
 } = require("../controller/workoutController");
 
 const workouts = require("express").Router();
+const requireAuth = require("../middleware/requireAuth");
 
+workouts.use(requireAuth);
 /*=============GET all workouts========== */
 workouts.get("/", workout_get);
 

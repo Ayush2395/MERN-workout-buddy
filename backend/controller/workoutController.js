@@ -26,9 +26,11 @@ const singleWorkout_get = async (req, res) => {
 /*=============workout post controller============ */
 const workout_post = async (req, res) => {
   const { title, reps, load } = req.body;
+  console.log(req.body);
 
   try {
-    const workout = await workoutModel.create({ title, reps, load });
+    const user_id = req.user._id;
+    const workout = await workoutModel.create({ title, reps, load, user_id });
     res.status(200).json(workout);
   } catch (err) {
     res.status(400).json({ error: err.message });
